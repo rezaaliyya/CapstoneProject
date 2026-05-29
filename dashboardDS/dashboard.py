@@ -109,7 +109,10 @@ st.markdown("""
 # ─────────────────────────────────────────
 @st.cache_data
 def generate_data():
-    df = pd.read_csv('Personal_Finance_Dataset_Cleaned.csv')
+    import os
+    base_dir = os.path.dirname(os.path.abspath(__file__))
+    csv_path = os.path.join(base_dir, 'Personal_Finance_Dataset_Cleaned.csv')
+    df = pd.read_csv(csv_path)
     df['Date'] = pd.to_datetime(df['Date'])
 
     # Feature engineering
@@ -122,7 +125,6 @@ def generate_data():
     return df
 
 df = generate_data()
-
 # ─────────────────────────────────────────
 # SIDEBAR
 # ─────────────────────────────────────────
